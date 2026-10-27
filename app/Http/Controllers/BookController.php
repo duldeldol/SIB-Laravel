@@ -11,6 +11,10 @@ class BookController extends Controller
     {
         $books = Book::with('author')->get();
 
-        return view('book', ['books' => $books]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Get All Resource',
+            'data' => $books
+        ], 200);
     }
 }
