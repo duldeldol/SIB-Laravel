@@ -11,8 +11,8 @@
         <div class="container">
             <a class="navbar-brand fw-bold" href="/">BookSales</a>
             <div class="navbar-nav">
-                <a class="nav-link" href="/genres">Genres</a>
                 <a class="nav-link active" href="/authors">Authors</a>
+                <a class="nav-link" href="/books">Books</a>
             </div>
         </div>
     </nav>
@@ -33,14 +33,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($authors as $index => $item)
+                        @forelse ($authors as $index => $item)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td class="fw-semibold">{{ $item['name'] }}</td>
-                                <td><code>{{ $item['photo'] }}</code></td>
-                                <td>{{ $item['bio'] }}</td>
+                                <td class="fw-semibold">{{ $item->name }}</td>
+                                <td><code>{{ $item->photo }}</code></td>
+                                <td>{{ $item->bio }}</td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">Belum ada data author.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
